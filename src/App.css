@@ -1,97 +1,87 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
 body {
-  background-color: #282c34;
+	background: black;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 200;
+	font-size: 16px;
+	height: 100%;
+	max-height: 100vh;
+	overflow: hidden;
 }
 
-.App {
-  text-align: center;
-  max-width: 728px;
-  margin: 0 auto;
+.center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10vh;
+	width: 100%;
 }
 
-.App header {
-  background-color: #181717;
-  height: 10vh;
-  min-height: 50px;
-  color: white;
-  position: fixed;
-  width: 100%;
-  max-width: 728px;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 99;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.App section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: rgb(40, 37, 53);
-}
 
 main {
   padding: 10px;
-  height: 80vh;
-  margin: 10vh 0 10vh;
+  height: 100%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
 }
 
-main::-webkit-scrollbar {
-  width: 0.25rem;
+::-webkit-scrollbar {
+  display: none;
 }
 
-main::-webkit-scrollbar-track {
-  background: #1e1e24;
+a {
+	font-size: 1rem;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	opacity: 1;
+	transition: opacity 0.15s;
 }
 
-main::-webkit-scrollbar-thumb {
-  background: #6649b8;
+a:hover {
+	opacity: 0.8;
 }
 
 form {
-  height: 10vh;
-  position: fixed;
-  bottom: 0;
-  background-color: rgb(24, 23, 23);
+  height: 5vh;
   width: 100%;
-  max-width: 728px;
   display: flex;
+  margin: 1rem 2rem;
   font-size: 1.5rem;
+  margin: 1rem;
 }
 
 form button {
-  width: 20%;
-  background-color: rgb(56, 56, 143);
+  width: 25%;
+  background-color: purple;
 }
 
-
 input {
-  line-height: 1.5;
-  width: 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  /* width: 100vw; */
   background: rgb(58, 58, 58);
   color: white;
   outline: none;
   border: none;
-  padding: 0 10px;
+  padding: 0 2rem;
 }
 
 button {
   background-color: #282c34; /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 0.5rem 1rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 button:disabled {
@@ -99,8 +89,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-
-.sign-in {
+.sign-in-button {
   color: #282c34;
   background: white;
   max-width: 400px;
@@ -108,47 +97,89 @@ button:disabled {
 }
 
 
-
-
 ul, li {
-  text-align: left;
+  display: inline;
+  margin: 0.5rem 2rem;
+  padding: 0.5rem 2rem;
+  text-align: right;
   list-style: none;
 }
 
 p {
-  max-width: 500px;
-  margin-bottom: 12px;
-  line-height: 24px;
+  max-width: 250px;
+  line-height: 1rem;
   padding: 10px 20px;
-  border-radius: 25px;
   position: relative;
   color: white;
-  text-align: center;
+  text-align: left;
 }
+
+
 
 .message {
   display: flex;
+  flex-direction: row;
   align-items: center;
 }
 
-
-.sent {
-  flex-direction: row-reverse;
-}
-
 .sent p {
-  color: white;
-  background: #0b93f6;
-  align-self: flex-end;
+  color: cyan;
 }
 .received p {
-  background: #e5e5ea;
-  color: black;
+  color: white;
 }
 
-img {
-  width: 40px;
-  height: 40px;
+.chat {
+  /* display: flex; */
+  /* flex-direction: column;
+  align-items: flex-start; */
+  margin-top: auto;
+  height: 400px;
+  width: 350px;
+  /* border: 1px cyan solid; */
+  background: #222222;
+  overflow-y: scroll;
+}
+
+.chat-avatar {
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin: 2px 5px;
 }
+
+
+.navbar {
+  background-color:#111111;
+  height: 50px;
+  min-height: 50px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+
+.grid-container {
+  margin-top:50px;
+  height: 92vh;
+  width: 100vw;
+  border: 5px magenta solid;
+  display: grid;
+  grid-template-columns: 1.1fr 0.4fr;
+  grid-template-rows: 1.6fr 2fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "main-grid users-grid"
+    "main-grid chat-grid";
+}
+
+.users-grid { grid-area: users-grid; border: 1px blue solid;}
+
+.chat-grid { grid-area: chat-grid; border: 1px cyan solid;}
+
+.main-grid { grid-area: main-grid; border: 1px red solid;}
