@@ -6,17 +6,19 @@ import ChatMessage from './ChatMessage'
 // Firebase chat code directly from https://github.com/fireship-io/react-firebase-chat
 export default function Chat( { auth, firestore, firebase, useCollectionData }) {
     const dummy = useRef();
+    const chatWindow = useRef();
+
     const messagesRef = firestore.collection('messages');
-    const query = messagesRef.orderBy('createdAt').limit(25);
-  
-    const [messages] = useCollectionData(query, { idField: 'id' });
+    const messageQuery = messagesRef.orderBy('createdAt').limit(2000);
+    const [messages] = useCollectionData(messageQuery, { idField: 'id' });
   
     const [formValue, setFormValue] = useState('');
 
     // useEffect(() => {
-    //     console.log('chat mounted');
-    //     setFormValue('');
-    //     dummy.current.scrollIntoView({ behavior: 'smooth' });
+    //     // setFormValue('');
+    //     // chatWindow.current.scrollIntoView({ behavior: 'smooth' });
+    //     // chatWindow.scrollTo(0, chatWindow.scrollHeight);
+
     // }, [])
     
     const sendMessage = async (e) => {
@@ -33,19 +35,19 @@ export default function Chat( { auth, firestore, firebase, useCollectionData }) 
   
       // Reset input field and scroll to bottom of window
       setFormValue('');
-      dummy.current.scrollIntoView({ behavior: 'smooth' });
+      dummy.current.scrollIntoView(); //{ behavior: 'smooth' }
     }
   
     return (
         <div>
-            <div className='chat'>
+            <div className='chat' ref={chatWindow}>
                 {/* <main> */}
                     {messages &&
                         messages.map((msg) => (
                             <ChatMessage key={msg.id} message={msg} auth={auth} />
                         ))}
 
-                    <span className='dummy' ref={dummy}></span>
+                    <div ref={dummy}></div>
                 {/* </main> */}
             </div>
 

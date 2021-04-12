@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from "react-router-dom";
 import './App.css';
 import Chat from './components/Chat';
 import SignIn from './components/SignIn';
 import Navbar from './components/Navbar';
-import Users from './components/Users';
 import WidgetView from './components/WidgetView';
 
 import firebase from 'firebase/app';
@@ -14,6 +13,7 @@ import 'firebase/analytics';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import Widget from './models/Widget';
 // Firebase chat code directly from https://github.com/fireship-io/react-firebase-chat
 
 firebase.initializeApp({
@@ -30,6 +30,11 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 // const analytics = firebase.analytics();
 
+const widgets = [];
+
+function createWidget() {
+  widgets.push(new Widget());
+}
 
 function App() {
 
@@ -38,7 +43,6 @@ function App() {
   return (
     <div>
       <Switch>
-					{/* <Route exact path='/' render={() => <Home />} /> */}
 					<Route
 						exact path='/'
 						render={() => (
@@ -48,12 +52,11 @@ function App() {
 
                 <div className='grid-container'>
                   <Chat className='chat-grid' auth={auth} firestore={firestore} firebase={firebase} useCollectionData={useCollectionData}/> 
-                  <Users />
-                  <WidgetView  />
+                  <WidgetView widgets={widgets} />
                 </div>
               </div>
               : 
-              <SignIn firebase={firebase} auth={auth}/>
+              <SignIn firebase={firebase} auth={auth} createWidget={createWidget}/>
 						)}
 					/>
       </Switch>
