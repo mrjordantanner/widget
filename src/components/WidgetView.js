@@ -106,7 +106,6 @@ export default function WidgetView( { firestore, auth } ) {
 
 
 
-
     return (
 			<div className='main-grid'>
 				<div className='widget-container' ref={container}>

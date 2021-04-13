@@ -2,12 +2,15 @@ import React, { useRef, useState, useEffect } from 'react';
 // import 'firebase/database';
 import Draggable from 'react-draggable';
 import anime from 'animejs';
+import useSound from 'use-sound';
+import boom from '../../audio/808_Soft.wav';
 
 export default function Widget( { handleMouseDown, getWidgetData, pushColor } ) {
     
     const widget = useRef();
     const uid = null;
     // const database = firebase.database();
+    const [play] = useSound(boom);
 
     const grow = anime({
       targets: '.ball',
@@ -16,16 +19,17 @@ export default function Widget( { handleMouseDown, getWidgetData, pushColor } ) 
       autoplay: false,
     });
 
+    // const BoopButton = () => {
+    //   const [play] = useSound(boom);
+    //   return <button onClick={play}>Boop!</button>;
+    // };
+    
+
     
     function handleMouseDown(e) {
       e.preventDefault();
+      play();
 
-      const grow = anime({
-        targets: '.widget',
-        scale: [1, .85],
-        duration: 300,
-        autoplay: false,
-      });
 
       // grow.restart();
       // getWidgetData();
@@ -53,6 +57,8 @@ export default function Widget( { handleMouseDown, getWidgetData, pushColor } ) 
 
  // Receive widget data and update position
   // socket.on('update_data', function (data) {
+
+
 
 
     return(
