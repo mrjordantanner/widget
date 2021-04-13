@@ -50,6 +50,12 @@ a:hover {
 	opacity: 0.8;
 }
 
+a:active {
+	opacity: 0.8;
+  color: orange;
+}
+
+
 form {
   height: 5vh;
   width: 100%;
@@ -61,16 +67,16 @@ form {
 
 form button {
   width: 25%;
-  background-color: purple;
+  border: 2px white solid;
+
 }
 
 input {
   font-size: 1rem;
-  /* width: 100vw; */
-  background: rgb(58, 58, 58);
+  background: transparent;
   color: white;
   outline: none;
-  border: none;
+  border: 2px white solid;
   padding: 0 2rem;
 }
 
@@ -89,16 +95,25 @@ button {
 
 button:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+}
+
+.button-logout {
+  border: 1px white solid;
 }
 
 .sign-in-button {
-  color: #282c34;
+  color: black;
   background: white;
   max-width: 400px;
-  margin: 0 auto;
+  font-weight: 600;
+  height: 50px;
 }
 
+.sign-in-button:hover {
+  color: white;
+  background: black;
+
+}
 
 ul, li {
   display: inline;
@@ -117,16 +132,21 @@ p {
   text-align: left;
 }
 
-.blur {
-  filter: blur(4px);
+.chat {
+  margin-top: auto;
+  height: 80vh;
+  width: 300px;
+  background: transparent;
+  overflow-y: scroll;
+  padding: 1.5rem;
+  scrollbar-width: none;
+  opacity: 0.7;
 }
-
 
 .message {
   display: flex;
   flex-direction: row;
   align-items: center;
-  z-index: 10;
 }
 
 .sent p {
@@ -136,20 +156,6 @@ p {
   color: white;
 }
 
-.chat {
-  /* display: flex; */
-  /* flex-direction: column;
-  align-items: flex-start; */
-  margin-top: auto;
-  height: 80vh;
-  width: 300px;
-  /* border: 1px cyan solid; */
-  background: #222222;
-  overflow-y: scroll;
-  z-index: 10;
-  padding: 1.5rem;
-  scrollbar-width: none;
-}
 
 .chat-avatar {
   width: 30px;
@@ -158,10 +164,14 @@ p {
   margin: 2px 5px;
 }
 
+.logo {
+  font-weight: 800;
+  font-size: 8rem;
+}
 
 .navbar {
-  background-color:#111111;
-  
+  /* background-color:#111111; */
+  /* display: inline; */
   height: 50px;
   min-height: 50px;
   color: white;
@@ -169,10 +179,11 @@ p {
   width: 100%;
   top: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row; 
   align-items: right;
-  justify-content: center;
-  padding: 10px;
+  justify-content: space-between;
+  /* padding: 10px; */
+  margin-left: 2rem;
 }
 
 
@@ -190,8 +201,8 @@ p {
     "main-grid chat-grid";
 }
 
-.users-grid { grid-area: users-grid; border: 1px blue solid;}
+.users-grid { grid-area: users-grid; }
 
-.chat-grid { grid-area: chat-grid; border: 1px cyan solid;}
+.chat-grid { grid-area: chat-grid; }
 
-.main-grid { grid-area: main-grid; border: 1px red solid;}
+.main-grid { grid-area: main-grid; border: 1px solid #222222; }

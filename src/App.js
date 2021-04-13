@@ -6,14 +6,15 @@ import SignIn from './components/SignIn';
 import Navbar from './components/Navbar';
 import WidgetView from './components/WidgetView';
 
+// import * as firebase from "firebase/app";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import 'firebase/analytics';
+// import 'firebase/analytics';
+// import 'firebase/database';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import Widget from './models/Widget';
 // Firebase chat code directly from https://github.com/fireship-io/react-firebase-chat
 
 firebase.initializeApp({
@@ -28,17 +29,39 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
+// const database = firebase.database();
 // const analytics = firebase.analytics();
 
-const widgets = [];
 
-function createWidget() {
-  widgets.push(new Widget());
-}
 
 function App() {
 
   const [user] = useAuthState(auth);
+
+  //from https://firebase.google.com/docs/auth/admin/manage-users#list_all_users
+  // const listAllUsers = (nextPageToken) => {
+  //   // List batch of users, 1000 at a time.
+  //   admin
+  //     .auth()
+  //     .listUsers(1000, nextPageToken)
+  //     .then((listUsersResult) => {
+  //       listUsersResult.users.forEach((userRecord) => {
+  //         console.log('user', userRecord.toJSON());
+  //       });
+  //       if (listUsersResult.pageToken) {
+  //         // List next batch of users.
+  //         listAllUsers(listUsersResult.pageToken);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error listing users:', error);
+  //     });
+  // };
+  // // Start listing users from the beginning, 1000 at a time.
+  // listAllUsers();
+
+
+
 
   return (
     <div>
@@ -52,11 +75,11 @@ function App() {
 
                 <div className='grid-container'>
                   <Chat className='chat-grid' auth={auth} firestore={firestore} firebase={firebase} useCollectionData={useCollectionData}/> 
-                  <WidgetView widgets={widgets} />
+                  <WidgetView firestore={firestore} auth={auth}/>
                 </div>
               </div>
               : 
-              <SignIn firebase={firebase} auth={auth} createWidget={createWidget}/>
+              <SignIn firebase={firebase} firestore={firestore} auth={auth}/>
 						)}
 					/>
       </Switch>

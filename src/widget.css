@@ -5,7 +5,6 @@
 html, body {
     height: 97vh;
     width:97vw;
-    background: #222222;
     --baseR: 0;
     --baseG: 0;
     --baseB: 0;
@@ -39,22 +38,31 @@ html, body {
     background: #444444;
 }
 
-.ball {
-    /* background: #10bfde; */
+.widget {
     background-image: linear-gradient(#10bfde, blue);
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    opacity: 0.9;
+    opacity: 0.8;
     transition: opacity 0.25s;
     transition: width 0.1s;
     transition: height 0.1s;
     transform-origin: center;
+    border: 2px black solid;
 
 }
 
-.ball:hover {
-    opacity: 1.0;
+.widget:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.widget:active {
+    opacity: 1;
+    background-image: linear-gradient(#4cd9f1, blue);
+    width: 180px;
+    height: 180px;
+    animation: 1s;
 }
 
 .box {
